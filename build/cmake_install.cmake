@@ -1,4 +1,4 @@
-# Install script for directory: /home/lcoburn/code/code/UDACITYMM/CppND-Memory-Management-Chatbot
+# Install script for directory: /home/lcoburn/membot/CppND-Memory-Management-Chatbot
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/lcoburn/code/code/UDACITYMM/CppND-Memory-Management-Chatbot/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/lcoburn/membot/CppND-Memory-Management-Chatbot/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

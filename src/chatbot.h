@@ -3,7 +3,6 @@
 
 #include <wx/bitmap.h>
 #include <string>
-#include <memory>
 
 class GraphNode; // forward declaration
 class ChatLogic; // forward declaration
@@ -23,20 +22,17 @@ private:
     int ComputeLevenshteinDistance(std::string s1, std::string s2);
 
 public:
-    // constructors / destructors
+    // constructors / destructor
     ChatBot();                     // constructor WITHOUT memory allocation
-    ChatBot(const std::string & filename); // constructor WITH memory allocation
+    ChatBot(std::string filename); // constructor WITH memory allocation
     ~ChatBot();
 
     //// STUDENT CODE
     ////
-
-    ChatBot(const ChatBot & from);             // Task 2 Added Copy Constructor
-    ChatBot &operator=(const ChatBot & from);  // Task 2 Added Copy Assignment Constructor
-    ChatBot(ChatBot && from);                  // Task 2 Added Move Constructor
-    ChatBot &operator=(ChatBot && from);       // Task 2 Added Move Assignment Operator
-
-    ChatLogic * GetChatLogicHandle() {return _chatLogic;}
+    ChatBot(const ChatBot& from);            // Task 2 Added Copy Constructor (Rule of 5)
+    ChatBot& operator=(const ChatBot& from); // Task 2 Added Copy Assignment Operator (Rule of 5)
+    ChatBot(ChatBot&& from);                 // Task 2 Added Move Constructor (Rule of 5)
+    ChatBot& operator=(ChatBot&& from);      // Task 2 Added Move Assignment Operator (Rule of 5)
     ////
     //// EOF STUDENT CODE
 
@@ -51,3 +47,4 @@ public:
 };
 
 #endif /* CHATBOT_H_ */
+

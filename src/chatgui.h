@@ -2,7 +2,7 @@
 #define CHATGUI_H_
 
 #include <wx/wx.h>
-#include <memory> // unique_ptr
+#include <memory> // std::unique_ptr
 
 class ChatLogic; // forward declaration
 
@@ -16,7 +16,7 @@ private:
 
     //// STUDENT CODE
     ////
-    std::unique_ptr<ChatLogic> _chatLogic;
+    std::unique_ptr<ChatLogic> _chatLogic; // Task 1
     ////
     //// EOF STUDENT CODE
 
@@ -65,7 +65,7 @@ private:
     void OnEnter(wxCommandEvent &WXUNUSED(event));
 
 public:
-    // constructor / desctructor
+    // constructor / destructor
     ChatBotFrame(const wxString &title);
 };
 

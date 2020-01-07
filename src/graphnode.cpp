@@ -1,13 +1,13 @@
 #include "graphedge.h"
 #include "graphnode.h"
-#include "chatlogic.h"
-#include <iostream>
 
-GraphNode::GraphNode(int id) {
+GraphNode::GraphNode(int id)
+{
     _id = id;
 }
 
-GraphNode::~GraphNode() {
+GraphNode::~GraphNode()
+{
     //// STUDENT CODE
     ////
 
@@ -15,34 +15,40 @@ GraphNode::~GraphNode() {
     //// EOF STUDENT CODE
 }
 
-void GraphNode::AddToken(std::string token) {
+void GraphNode::AddToken(std::string token)
+{
     _answers.emplace_back(token);
 }
 
-void GraphNode::AddEdgeToParentNode(GraphEdge *edge) {
+void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
+{
     _parentEdges.emplace_back(edge);
 }
 
-void GraphNode::AddEdgeToChildNode(GraphEdge *edge) {
-    _childEdges.emplace_back(std::unique_ptr<GraphEdge>(edge));
+void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge)
+{
+    _childEdges.emplace_back(std::move(edge));
 }
 
 //// STUDENT CODE
 ////
-void GraphNode::MoveChatbotHere(ChatBot &&chatBot) {
-    _chatBot = std::move(chatBot);
-    _chatBot.GetChatLogicHandle()->SetChatbotHandle(
-            &_chatBot); // immediately update the _chatBot handle inside ChatLogic
-    _chatBot.SetCurrentNode(this);
+void GraphNode::MoveChatbotHere(ChatBot movingChatBot)
+{
+    _chatBot.reset(new ChatBot());
+    *_chatBot = std::move(movingChatBot);
+    _chatBot->SetCurrentNode(this);
 }
 
-void GraphNode::MoveChatbotToNewNode(GraphNode *newNode) {
-    newNode->MoveChatbotHere(std::move(_chatBot));
+void GraphNode::MoveChatbotToNewNode(GraphNode *nNode)
+{
+    nNode->MoveChatbotHere(std::move(*_chatBot));
+    _chatBot.reset();
 }
 ////
 //// EOF STUDENT CODE
 
-GraphEdge *GraphNode::GetChildEdgeAtIndex(int index) {
+GraphEdge *GraphNode::GetChildEdgeAtIndex(int index)
+{
     //// STUDENT CODE
     ////
 
