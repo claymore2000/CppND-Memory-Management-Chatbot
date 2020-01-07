@@ -16,13 +16,10 @@ private:
     // proprietary members
     int _id;
     std::vector<std::string> _keywords; // list of topics associated with this edge
-    
-
+   
 public:
-    // constructor / desctructor
     GraphEdge(int id);
 
-    // getter / setter
     int GetID() { return _id; }
     void SetChildNode(GraphNode *childNode);
     void SetParentNode(GraphNode *parentNode);
