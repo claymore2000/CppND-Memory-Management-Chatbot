@@ -17,9 +17,7 @@ ChatLogic::ChatLogic()
 {
     //// STUDENT CODE
     ////
-    _currentNode = nullptr;
-    _chatBot = nullptr;
-    _panelDialog = NULL;
+    //// To pass Task 5, no code should be in this method (removed 'nulling code' from first submission
     ////
     //// EOF STUDENT CODE
 }
@@ -143,8 +141,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 			      auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&cToken](std::unique_ptr<GraphNode>& node) { return node->GetID() == std::stoul(cToken->second); });
 			         
 			      std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
-			      edge->SetChildNode(childNode->get());
-			      edge->SetParentNode(parentNode->get());
+			      edge->SetChildNode((*childNode).get());     // was (childNode->get()) before review;
+			      edge->SetParentNode((*parentNode).get());   // was (parentNode->get()) before review;
 
 			      // find all keywords for current node
 			      AddAllTokensToElement("KEYWORD", tokens, *(edge.get()));

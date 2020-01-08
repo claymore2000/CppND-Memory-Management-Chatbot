@@ -55,6 +55,7 @@ ChatBot::ChatBot(const ChatBot& from)
   _rootNode = from._rootNode;
   _currentNode = from._currentNode;
   _chatLogic = from._chatLogic;
+  _chatLogic->SetChatbotHandle(this);
 
   // load image into heap memory
   _image = new wxBitmap(*(from._image));
@@ -73,6 +74,7 @@ ChatBot& ChatBot::operator=(const ChatBot& from)
   _rootNode = from._rootNode;
   _currentNode = from._currentNode;
   _chatLogic = from._chatLogic;
+  _chatLogic->SetChatbotHandle(this);
 
   if (_image != NULL) // ensure image 'exists' before delete attempt.
   {
